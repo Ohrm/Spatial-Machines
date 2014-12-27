@@ -96,18 +96,20 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     							
     							ItemStack currentItem = ((TileEntitySpeedBoost) te).getStackInSlot(0);
     							
-    							if(currentItem.getItemDamage() == 0){
+    							if(currentItem != null){
+    								if(currentItem.getItemDamage() == 0){
     								
-    								tmpMultiplier += 0.1f;
+    									tmpMultiplier += 0.1f;
     								
-    							}else if(currentItem.getItemDamage() == 1){
+    								}else if(currentItem.getItemDamage() == 1){
     								
-    								tmpMultiplier += 0.3f;
+    									tmpMultiplier += 0.3f;
     								
-    							}else if(currentItem.getItemDamage() == 2){
+    								}else if(currentItem.getItemDamage() == 2){
     								
-    								tmpMultiplier += 0.5f;
+    									tmpMultiplier += 0.5f;
     								
+    								}
     							}
     							
     						}

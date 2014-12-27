@@ -3,19 +3,21 @@ package ohrm.SpatialMachines.Items;
 import java.util.List;
 
 import ohrm.SpatialMachines.Reference.Reference;
+import ohrm.SpatialMachines.main.SpatialMain;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemSpeedBoostBase extends ItemBase {
+public class ItemSpeedBoostBase extends Item {
 
 	public IIcon[] icons = new IIcon[3];
 	
 	public ItemSpeedBoostBase(String name) {
 		
-		super(name);
+		setCreativeTab(SpatialMain.spatialTab);
+		setUnlocalizedName(Reference.MODID + "_" + name);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		

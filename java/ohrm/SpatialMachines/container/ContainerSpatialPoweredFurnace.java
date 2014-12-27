@@ -12,13 +12,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ContainerSpatialPoweredFurnace extends Container
 {
     private TileEntitySpatialPoweredFurnace tileFurnace;
-    private int lastCookTime;
-    private int lastBurnTime;
-    private int lastItemBurnTime;
+    //private int lastEnergy;
     private static final String __OBFID = "CL_00001748";
 
     public ContainerSpatialPoweredFurnace(InventoryPlayer invPlayer, TileEntitySpatialPoweredFurnace tile)
@@ -44,7 +43,10 @@ public class ContainerSpatialPoweredFurnace extends Container
 
     public void addCraftingToCrafters(ICrafting craft)
     {
+    	
         super.addCraftingToCrafters(craft);
+        //craft.sendProgressBarUpdate(this, 0, this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN));
+        
     }
 
     /**
@@ -58,9 +60,9 @@ public class ContainerSpatialPoweredFurnace extends Container
         //{
             //ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-            //if (this.lastCookTime != this.tileFurnace.furnaceCookTime)
+            //if (this.lastEnergy != this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN))
             //{
-                //icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.furnaceCookTime);
+                //icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN));
             //}
 
             //if (this.lastBurnTime != this.tileFurnace.furnaceBurnTime)
@@ -74,7 +76,7 @@ public class ContainerSpatialPoweredFurnace extends Container
             //}
         //}
 
-        //this.lastCookTime = this.tileFurnace.furnaceCookTime;
+        //this.lastEnergy = this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN);
         //this.lastBurnTime = this.tileFurnace.furnaceBurnTime;
         //this.lastItemBurnTime = this.tileFurnace.currentItemBurnTime;
     }
@@ -83,8 +85,8 @@ public class ContainerSpatialPoweredFurnace extends Container
     public void updateProgressBar(int p_75137_1_, int p_75137_2_)
     {
         //if (p_75137_1_ == 0)
-        //{
-            //this.tileFurnace.furnaceCookTime = p_75137_2_;
+       // {
+            //this.tileFurnace. = p_75137_2_;
         //}
 
         //if (p_75137_1_ == 1)

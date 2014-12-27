@@ -14,8 +14,8 @@ public class SpeedBoost extends BlockContainer {
 	protected SpeedBoost() {
 		
 		super(Material.anvil);
-		setBlockName(Reference.MODID + "_" + "SpeedBoostBasic");
-		setBlockTextureName(Reference.MODID + ":" + "SpeedBoostBasic");
+		setBlockName(Reference.MODID + "_" + "SpeedBoost");
+		setBlockTextureName(Reference.MODID + ":" + "SpeedBoost");
 		setCreativeTab(SpatialMain.spatialTab);
 		
 	}
