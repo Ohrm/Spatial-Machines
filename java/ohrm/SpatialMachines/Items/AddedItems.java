@@ -10,17 +10,23 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class AddedItems {
 	
+	public static ItemSpeedBoostBase itemSpeedBoost;
+;
+	
 	public static void addItems(){
 		
+		itemSpeedBoost = new ItemSpeedBoostBase("itemSpeedBoost");
 		
+		registerItems();
+		
+		itemRecipes();
 		
 	}
 	
 	public static void registerItems(){
 		
-		
-		
-		
+		GameRegistry.registerItem(itemSpeedBoost, "itemSpeedBoost");
+
 	}
 	
 	public static void itemRecipes(){

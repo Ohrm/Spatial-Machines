@@ -17,10 +17,14 @@ public class AddedBlocks {
 	//Powered Machines
     public static Block SpatialPoweredFurnace;
     
-    public static void preinit() {
+    //Speed multipliers
+    public static Block SpeedBoost;
+    
+    public static void addBlocks() {
     	
     	//Powered Machines
-    	SpatialPoweredFurnace =  new SpatialPoweredFurnace(false).setCreativeTab(SpatialMain.spatialTab);
+    	SpatialPoweredFurnace =  new SpatialPoweredFurnace();
+    	SpeedBoost = new SpeedBoost();
     
     	registerBlocks();
     	
@@ -33,6 +37,8 @@ public class AddedBlocks {
     	//Game Reg    
     	//Powered Machines
     	GameRegistry.registerBlock(SpatialPoweredFurnace, "spatialPoweredFurnace");
+    	
+    	GameRegistry.registerBlock(SpeedBoost, "speedBooster");
     	
     }
     public static void blockRecipes() {

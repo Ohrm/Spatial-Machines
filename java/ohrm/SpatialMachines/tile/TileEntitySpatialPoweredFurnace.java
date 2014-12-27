@@ -55,7 +55,7 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
      */
     @Override
 	public String getInventoryName() {
-		return "Cyanite Reprocessor";
+		return "Spatial Powered Furnace";
 	}
 
     /**

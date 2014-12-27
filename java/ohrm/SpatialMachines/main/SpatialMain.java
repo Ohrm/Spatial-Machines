@@ -24,6 +24,7 @@ import ohrm.SpatialMachines.gui.GUIHandler;
 import ohrm.SpatialMachines.proxies.ClientProxy;
 import ohrm.SpatialMachines.proxies.CommonProxy;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
+import ohrm.SpatialMachines.tile.TileEntitySpeedBoost;
 
 @Mod(name = "Spatial Machines", modid = Reference.MODID, version = Reference.MODVERSION)
 public class SpatialMain {
@@ -41,7 +42,7 @@ public class SpatialMain {
 	public void preinit(FMLPreInitializationEvent event){
 		
 		AddedItems.addItems();
-		AddedBlocks.preinit();
+		AddedBlocks.addBlocks();
 		
 	}
 
@@ -51,7 +52,8 @@ public class SpatialMain {
 		serverProxy.registerRenders();
 		
 		GameRegistry.registerTileEntity(TileEntitySpatialPoweredFurnace.class, "Spatial Powered Furnace");
-	
+		GameRegistry.registerTileEntity(TileEntitySpeedBoost.class, "Speed Boost");
+		
 		new GUIHandler();
 	
 	}

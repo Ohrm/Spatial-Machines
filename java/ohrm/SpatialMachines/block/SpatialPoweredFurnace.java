@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 
 public class SpatialPoweredFurnace extends BlockContainer {
 
-	private static boolean active = false;
+	private boolean active;
 	@SideOnly(Side.CLIENT)
     private IIcon iconTop;
     @SideOnly(Side.CLIENT)
@@ -40,10 +40,11 @@ public class SpatialPoweredFurnace extends BlockContainer {
     
     private static boolean field_149934_M;
 	
-	protected SpatialPoweredFurnace(boolean p_i45394_1_) {
+	protected SpatialPoweredFurnace() {
 		super(Material.anvil);
-		active = p_i45394_1_;
+		active = false;
 		setBlockName(Reference.MODID + "_" + "SpatialPoweredFurnace");
+		setCreativeTab(SpatialMain.spatialTab);
 	}
 
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -123,12 +124,26 @@ public class SpatialPoweredFurnace extends BlockContainer {
         this.iconBottom = icon.registerIcon(Reference.MODID + ":" + "furnace_bottom");
     }
 	
-	public static void updateFurnaceBlockState(boolean p_149931_0_, World p_149931_1_, int p_149931_2_, int p_149931_3_, int p_149931_4_)
+	public void updateFurnaceBlockState(boolean p_149931_0_, World p_149931_1_, int p_149931_2_, int p_149931_3_, int p_149931_4_)
     {
         int l = p_149931_1_.getBlockMetadata(p_149931_2_, p_149931_3_, p_149931_4_);
         TileEntity tileentity = p_149931_1_.getTileEntity(p_149931_2_, p_149931_3_, p_149931_4_);
         field_149934_M = true;
 
+        if(tileentity instanceof TileEntitySpatialPoweredFurnace){
+        	
+        	if(((TileEntitySpatialPoweredFurnace) tileentity).isActive()){
+        		
+        		active = true;
+        		
+        	}else{
+        		
+        		active = false;
+        		
+        	}
+        	
+        }
+        
         if (p_149931_0_)
         {
             p_149931_1_.setBlock(p_149931_2_, p_149931_3_, p_149931_4_, AddedBlocks.SpatialPoweredFurnace);
@@ -138,29 +153,15 @@ public class SpatialPoweredFurnace extends BlockContainer {
             p_149931_1_.setBlock(p_149931_2_, p_149931_3_, p_149931_4_, AddedBlocks.SpatialPoweredFurnace);
         }
 
-        field_149934_M = false;
-        p_149931_1_.setBlockMetadataWithNotify(p_149931_2_, p_149931_3_, p_149931_4_, l, 2);
-
         if (tileentity != null)
         {
             tileentity.validate();
             p_149931_1_.setTileEntity(p_149931_2_, p_149931_3_, p_149931_4_, tileentity);
-        
-            if(tileentity instanceof TileEntitySpatialPoweredFurnace){
-            	
-            	if(((TileEntitySpatialPoweredFurnace) tileentity).isActive()){
-            		
-            		active = true;
-            		
-            	}else{
-            		
-            		active = false;
-            		
-            	}
-            	
-            }
-            
+                                
         }
+        
+        field_149934_M = false;
+        p_149931_1_.setBlockMetadataWithNotify(p_149931_2_, p_149931_3_, p_149931_4_, l, 2);
         
     }
 

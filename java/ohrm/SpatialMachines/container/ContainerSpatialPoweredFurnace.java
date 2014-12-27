@@ -134,7 +134,7 @@ public class ContainerSpatialPoweredFurnace extends Container
                         return null;
                     }
                 }
-                else if (slotNum >= 3 && slotNum < 30)
+                else if (slotNum >= 2 && slotNum < 30)
                 {
                     if (!this.mergeItemStack(itemstack1, 30, 38, false))
                     {

@@ -1,5 +1,6 @@
 package ohrm.SpatialMachines.tile;
 
+import ohrm.SpatialMachines.block.AddedBlocks;
 import sun.security.util.Debug;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
@@ -7,6 +8,7 @@ import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.IEnergyStorage;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -41,7 +43,7 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
 	@Override
 	public int getCycleEnergyCost(){
 		
-		return getCycleLength() * 4;
+		return 800;
 		
 	}
 		
@@ -86,9 +88,29 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     				
     				if(block != null){
     					
-    					if(block == Blocks.diamond_block){
+    					if(block == AddedBlocks.SpeedBoost){
     		    		
-    						tmpMultiplier += 0.2f;
+    						TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
+    						
+    						if(te instanceof TileEntitySpeedBoost){
+    							
+    							ItemStack currentItem = ((TileEntitySpeedBoost) te).getStackInSlot(0);
+    							
+    							if(currentItem.getItemDamage() == 0){
+    								
+    								tmpMultiplier += 0.1f;
+    								
+    							}else if(currentItem.getItemDamage() == 1){
+    								
+    								tmpMultiplier += 0.3f;
+    								
+    							}else if(currentItem.getItemDamage() == 2){
+    								
+    								tmpMultiplier += 0.5f;
+    								
+    							}
+    							
+    						}
     		    	
     					}
     				
