@@ -1,24 +1,21 @@
 package ohrm.SpatialMachines.container;
 
-import ohrm.SpatialMachines.slot.SlotSpeedBoost;
-import ohrm.SpatialMachines.slot.SlotTestMachine;
-import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
-import ohrm.SpatialMachines.tile.TileEntitySpeedBoost;
+import ohrm.SpatialMachines.slot.SlotBoostBlock;
+import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class ContainerSpeedBoost extends Container {
+public class ContainerBoostBlock extends Container {
 
-	 private TileEntitySpeedBoost speedboost;
+	 private TileEntityBoostBlock speedboost;
 	 
-	 public ContainerSpeedBoost(InventoryPlayer invPlayer, TileEntitySpeedBoost tile)
+	 public ContainerBoostBlock(InventoryPlayer invPlayer, TileEntityBoostBlock tile)
 	    {
 	        this.speedboost = tile;
-	        this.addSlotToContainer(new SlotSpeedBoost(tile, 0, 83, 43));
+	        this.addSlotToContainer(new SlotBoostBlock(tile, 0, 83, 43));
 	        int i;
 
 	        for (i = 0; i < 3; ++i)

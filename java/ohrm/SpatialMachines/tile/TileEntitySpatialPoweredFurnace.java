@@ -1,26 +1,14 @@
 package ohrm.SpatialMachines.tile;
 
 import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
 import ohrm.SpatialMachines.Util.Utils;
 import ohrm.SpatialMachines.block.SpatialPoweredFurnace;
-import sun.security.util.Debug;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -37,6 +25,8 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     /**
      * The ItemStacks that hold the items currently being used in the furnace
      */
+    public int active = 0;
+    
     public static final int NUM_SLOTS = 2;
     
     private String name;
@@ -101,7 +91,7 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     @Override
     public void onPoweredCycleBegin(){
     	
-    	
+    	active = 1;
     	
     }
     
@@ -127,6 +117,7 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     		}
     		
     	}
+    	active = 0;
     	markDirty();
     	
     	
@@ -143,19 +134,17 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     	
     }
 
-    /* A bit broken right now */
     @SideOnly(Side.CLIENT)
     public int getCookProgressScaled(int p_145953_1_)
     {
-        return this.cycledTicks * getCycleLength() / p_145953_1_;
+        return this.cycledTicks * p_145953_1_ / getCycleLength();
     }
 
-    /* A bit broken right now */
     @SideOnly(Side.CLIENT)
     public int getBurnTimeRemainingScaled(int time)
     {
-    	if(this.isActive())
-    		return this.cycledTicks * time / getCycleLength();
+    	if(this.active == 1)
+    		return time;
     	else
     		return 0;
     }

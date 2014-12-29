@@ -2,28 +2,31 @@ package ohrm.SpatialMachines.block;
 
 import ohrm.SpatialMachines.Reference.Reference;
 import ohrm.SpatialMachines.main.SpatialMain;
-import ohrm.SpatialMachines.tile.TileEntitySpeedBoost;
+import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class SpeedBoost extends BlockContainer {
+public class BoostBlock extends BlockContainer {
 
-	protected SpeedBoost() {
+	protected BoostBlock() {
 		
 		super(Material.anvil);
-		setBlockName(Reference.MODID + "_" + "SpeedBoost");
-		setBlockTextureName(Reference.MODID + ":" + "SpeedBoost");
+		setBlockName(Reference.MODID + "_" + "BoostBlock");
+		setBlockTextureName(Reference.MODID + ":" + "BoostBlock");
 		setCreativeTab(SpatialMain.spatialTab);
+		this.setHardness(3.0F);
+        this.setResistance(5.0F);
+        this.setHarvestLevel("pickaxe", 1);
 		
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		
-		return new TileEntitySpeedBoost();
+		return new TileEntityBoostBlock();
 		
 	}
 

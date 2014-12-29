@@ -1,20 +1,12 @@
 package ohrm.SpatialMachines.main;
 
-import java.awt.Color;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ohrm.SpatialMachines.Items.AddedItems;
 import ohrm.SpatialMachines.Reference.Reference;
@@ -24,7 +16,7 @@ import ohrm.SpatialMachines.gui.GUIHandler;
 import ohrm.SpatialMachines.proxies.ClientProxy;
 import ohrm.SpatialMachines.proxies.CommonProxy;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
-import ohrm.SpatialMachines.tile.TileEntitySpeedBoost;
+import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
 
 @Mod(name = "Spatial Machines", modid = Reference.MODID, version = Reference.MODVERSION)
 public class SpatialMain {
@@ -52,7 +44,7 @@ public class SpatialMain {
 		serverProxy.registerRenders();
 		
 		GameRegistry.registerTileEntity(TileEntitySpatialPoweredFurnace.class, "Spatial Powered Furnace");
-		GameRegistry.registerTileEntity(TileEntitySpeedBoost.class, "Speed Boost");
+		GameRegistry.registerTileEntity(TileEntityBoostBlock.class, "Speed Boost");
 		
 		new GUIHandler();
 	

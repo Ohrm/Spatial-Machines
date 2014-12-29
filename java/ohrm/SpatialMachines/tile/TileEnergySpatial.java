@@ -1,18 +1,14 @@
 package ohrm.SpatialMachines.tile;
 
+import ohrm.SpatialMachines.Items.ItemEnergyBoostBase;
+import ohrm.SpatialMachines.Items.ItemSpeedBoostBase;
 import ohrm.SpatialMachines.block.AddedBlocks;
-import sun.security.util.Debug;
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
-import cofh.api.energy.IEnergyReceiver;
-import cofh.api.energy.IEnergyStorage;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 
 public abstract class TileEnergySpatial extends TileEnergyBasic {
@@ -20,6 +16,12 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     public float tmpMultiplier = 1;
     
     public float multiplier = 1;
+    
+    public float tmpEnergyMultiplier = 1;
+    
+    public float tmpEnergySpeedMultiplier = 0;
+    
+    public float energyMultiplier = 1;
     
 	Block block;
 	
@@ -43,7 +45,7 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
 	@Override
 	public int getCycleEnergyCost(){
 		
-		return 800;
+		return (int)(800 / energyMultiplier(this.xCoord, this.yCoord, this.zCoord, this.worldObj));
 		
 	}
 		
@@ -80,6 +82,7 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
 	public float speedMultiplier(int xco, int yco, int zco, World parWorld){
     	
     	tmpMultiplier = 1.0f;
+    	tmpEnergySpeedMultiplier = 0.0f;
     	
     	for(int x = -2; x <= 2; x++){
     		for(int y = -2; y <= 2; y++){
@@ -88,26 +91,29 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     				
     				if(block != null){
     					
-    					if(block == AddedBlocks.SpeedBoost){
+    					if(block == AddedBlocks.BoostBlock){
     		    		
     						TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
     						
-    						if(te instanceof TileEntitySpeedBoost){
+    						if(te instanceof TileEntityBoostBlock){
     							
-    							ItemStack currentItem = ((TileEntitySpeedBoost) te).getStackInSlot(0);
+    							ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
     							
-    							if(currentItem != null){
+    							if(currentItem != null && currentItem.getItem() instanceof ItemSpeedBoostBase){
     								if(currentItem.getItemDamage() == 0){
     								
     									tmpMultiplier += 0.1f;
+    									tmpEnergySpeedMultiplier += 0.05f;
     								
     								}else if(currentItem.getItemDamage() == 1){
     								
     									tmpMultiplier += 0.3f;
+    									tmpEnergySpeedMultiplier += 0.15f;
     								
     								}else if(currentItem.getItemDamage() == 2){
     								
     									tmpMultiplier += 0.5f;
+    									tmpEnergySpeedMultiplier += 0.25f;
     								
     								}
     							}
@@ -128,6 +134,62 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     		multiplier = tmpMultiplier;
     	
     	return multiplier;
+    	
+    }
+	
+	public float energyMultiplier(int xco, int yco, int zco, World parWorld){
+    	
+    	tmpEnergyMultiplier = 1.0f;
+    	
+    	for(int x = -2; x <= 2; x++){
+    		for(int y = -2; y <= 2; y++){
+    			for(int z = -2; z <= 2; z++){    				
+    				block = parWorld.getBlock(xco + x, yco + y, zco + z);
+    				
+    				if(block != null){
+    					
+    					if(block == AddedBlocks.BoostBlock){
+    		    		
+    						TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
+    						
+    						if(te instanceof TileEntityBoostBlock){
+    							
+    							ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
+    							
+    							if(currentItem != null && currentItem.getItem() instanceof ItemEnergyBoostBase){
+    								if(currentItem.getItemDamage() == 0){
+    								
+    									tmpEnergyMultiplier += 0.1f;    									
+    								
+    								}else if(currentItem.getItemDamage() == 1){
+    								
+    									tmpEnergyMultiplier += 0.3f;
+    								
+    								}else if(currentItem.getItemDamage() == 2){
+    								
+    									tmpEnergyMultiplier += 0.5f;
+    								
+    								}
+    							}
+    							
+    						}
+    		    	
+    					}
+    				
+    				}
+    				
+    			}
+    			
+    		}
+    		
+    	}
+    	
+    	tmpEnergyMultiplier += tmpEnergySpeedMultiplier;
+    	
+    	if(tmpEnergyMultiplier != energyMultiplier)
+    		energyMultiplier = tmpEnergyMultiplier;
+    	
+    	return energyMultiplier;
     	
     }
 

@@ -2,8 +2,12 @@ itemGroup.spatialTab=Spatial Machines
 
 tile.spatialmachines_SpatialPoweredFurnace.name=Spatial Powered Furnace
 
-tile.spatialmachines_SpeedBoost.name=Speed Booster
+tile.spatialmachines_BoostBlock.name=Spatial Booster
 
 item.spatialmachines_itemSpeedBoost_basic.name=Basic Speed Booster
 item.spatialmachines_itemSpeedBoost_intermediate.name=Intermediate Speed Booster
 item.spatialmachines_itemSpeedBoost_advanced.name=Advanced Speed Booster
+
+item.spatialmachines_itemEnergyBoost_basic.name=Basic Energy Booster
+item.spatialmachines_itemEnergyBoost_intermediate.name=Intermediate Energy Booster
+item.spatialmachines_itemEnergyBoost_advanced.name=Advanced Energy Booster

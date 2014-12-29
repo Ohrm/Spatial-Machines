@@ -1,6 +1,6 @@
 package ohrm.SpatialMachines.container;
 
-import ohrm.SpatialMachines.slot.SlotTestMachine;
+import ohrm.SpatialMachines.slot.SlotSpatialPoweredFurnace;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,20 +11,21 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class ContainerSpatialPoweredFurnace extends Container
 {
     private TileEntitySpatialPoweredFurnace tileFurnace;
-    //private int lastEnergy;
+    private int lastTicks;
+    private int lastActive;
+    private int lastEnergy;
     private static final String __OBFID = "CL_00001748";
 
     public ContainerSpatialPoweredFurnace(InventoryPlayer invPlayer, TileEntitySpatialPoweredFurnace tile)
     {
         this.tileFurnace = tile;
         this.addSlotToContainer(new Slot(tile, 0, 56, 17));
-        this.addSlotToContainer(new SlotTestMachine(tile, 1, 116, 35));
+        this.addSlotToContainer(new SlotSpatialPoweredFurnace(tile, 1, 116, 35));
         int i;
 
         for (i = 0; i < 3; ++i)
@@ -45,7 +46,8 @@ public class ContainerSpatialPoweredFurnace extends Container
     {
     	
         super.addCraftingToCrafters(craft);
-        //craft.sendProgressBarUpdate(this, 0, this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN));
+        craft.sendProgressBarUpdate(this, 0, this.tileFurnace.cycledTicks);
+        craft.sendProgressBarUpdate(this, 1, this.tileFurnace.active);
         
     }
 
@@ -56,48 +58,39 @@ public class ContainerSpatialPoweredFurnace extends Container
     {
         super.detectAndSendChanges();
 
-        //for (int i = 0; i < this.crafters.size(); ++i)
-        //{
-            //ICrafting icrafting = (ICrafting)this.crafters.get(i);
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-            //if (this.lastEnergy != this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN))
-            //{
-                //icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN));
-            //}
+            if (this.lastTicks != this.tileFurnace.getCurrentCycledTicks())
+            {
+                icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.cycledTicks);
+            }
 
-            //if (this.lastBurnTime != this.tileFurnace.furnaceBurnTime)
-            //{
-                //icrafting.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceBurnTime);
-            //}
+            if (this.lastActive != this.tileFurnace.active)
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.tileFurnace.active);
+            }
+        }
 
-            //if (this.lastItemBurnTime != this.tileFurnace.currentItemBurnTime)
-            //{
-                //icrafting.sendProgressBarUpdate(this, 2, this.tileFurnace.currentItemBurnTime);
-            //}
-        //}
-
-        //this.lastEnergy = this.tileFurnace.getEnergyStored(ForgeDirection.UNKNOWN);
-        //this.lastBurnTime = this.tileFurnace.furnaceBurnTime;
-        //this.lastItemBurnTime = this.tileFurnace.currentItemBurnTime;
+      
+        this.lastTicks = this.tileFurnace.cycledTicks;
+        this.lastActive = this.tileFurnace.active;
     }
 
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int p_75137_1_, int p_75137_2_)
     {
-        //if (p_75137_1_ == 0)
-       // {
-            //this.tileFurnace. = p_75137_2_;
-        //}
+        if (p_75137_1_ == 0)
+       {
+            this.tileFurnace.cycledTicks = p_75137_2_;
+       }
 
-        //if (p_75137_1_ == 1)
-        //{
-            //this.tileFurnace.furnaceBurnTime = p_75137_2_;
-        //}
+       if (p_75137_1_ == 1)
+       {
+    	   this.tileFurnace.active = p_75137_2_;
+       }
 
-        //if (p_75137_1_ == 2)
-        //{
-            //this.tileFurnace.currentItemBurnTime = p_75137_2_;
-        //}
     }
 
     public boolean canInteractWith(EntityPlayer player)

@@ -1,6 +1,5 @@
 package ohrm.SpatialMachines.Tabs;
 
-import ohrm.SpatialMachines.Items.AddedItems;
 import ohrm.SpatialMachines.block.AddedBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

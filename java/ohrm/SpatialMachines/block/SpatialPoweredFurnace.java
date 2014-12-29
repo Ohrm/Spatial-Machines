@@ -21,7 +21,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -45,6 +44,9 @@ public class SpatialPoweredFurnace extends BlockContainer {
 		active = false;
 		setBlockName(Reference.MODID + "_" + "SpatialPoweredFurnace");
 		setCreativeTab(SpatialMain.spatialTab);
+		this.setHardness(3.0F);
+        this.setResistance(5.0F);
+        this.setHarvestLevel("pickaxe", 1);
 	}
 
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -250,6 +252,8 @@ public class SpatialPoweredFurnace extends BlockContainer {
 		if (tileentityfurnace != null)
         {
         	if(tileentityfurnace.isActive()){
+        		this.active = true;
+        		
         		int l = world.getBlockMetadata(x, y, z);
             	float f = (float)x + 0.5F;
             	float f1 = (float)y + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
@@ -277,6 +281,10 @@ public class SpatialPoweredFurnace extends BlockContainer {
             		world.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
             		world.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
             	}
+        	}else{
+        		
+        		this.active = false;
+        		
         	}
         }
     }

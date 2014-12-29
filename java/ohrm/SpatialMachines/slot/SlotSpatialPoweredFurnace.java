@@ -5,9 +5,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class SlotTestMachine extends Slot {
+public class SlotSpatialPoweredFurnace extends Slot {
 
-	public SlotTestMachine(IInventory par1iInventory, int id, int x, int y) {
+	public SlotSpatialPoweredFurnace(IInventory par1iInventory, int id, int x, int y) {
 		super(par1iInventory, id, x, y);
 	}
 	

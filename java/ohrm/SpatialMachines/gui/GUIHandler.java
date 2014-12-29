@@ -1,10 +1,10 @@
 package ohrm.SpatialMachines.gui;
 
 import ohrm.SpatialMachines.container.ContainerSpatialPoweredFurnace;
-import ohrm.SpatialMachines.container.ContainerSpeedBoost;
+import ohrm.SpatialMachines.container.ContainerBoostBlock;
 import ohrm.SpatialMachines.main.SpatialMain;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
-import ohrm.SpatialMachines.tile.TileEntitySpeedBoost;
+import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -30,9 +30,9 @@ public class GUIHandler implements IGuiHandler {
 		
 		case 1:
 			te = world.getTileEntity(x, y, z);
-			if(te != null && te instanceof TileEntitySpeedBoost){
+			if(te != null && te instanceof TileEntityBoostBlock){
 				
-				return new ContainerSpeedBoost(player.inventory, (TileEntitySpeedBoost)te);
+				return new ContainerBoostBlock(player.inventory, (TileEntityBoostBlock)te);
 				
 			}
 			break;
@@ -56,9 +56,9 @@ public class GUIHandler implements IGuiHandler {
 		
 		case 1:
 			te = world.getTileEntity(x, y, z);
-			if(te != null && te instanceof TileEntitySpeedBoost){
+			if(te != null && te instanceof TileEntityBoostBlock){
 				
-				return new GuiSpeedBoost(player.inventory, (TileEntitySpeedBoost)te);
+				return new GuiBoostBlock(player.inventory, (TileEntityBoostBlock)te);
 				
 			}
 			break;

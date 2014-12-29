@@ -5,8 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ContainerFurnace;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import ohrm.SpatialMachines.container.ContainerSpatialPoweredFurnace;
@@ -45,17 +43,12 @@ public class GuiSpatialPoweredFurnace extends GuiContainer
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
-        if(this.tileEntitySpatialPoweredFurnace.getCycleCompletion() > 0.0) {
-			int progressWidth = (int)(this.tileEntitySpatialPoweredFurnace.getCycleCompletion() * (float)(this.width-1));
-			this.drawTexturedModalRect(k + 79, l + 34, 176, 14, 1+progressWidth, this.height);
-		}
         
-        //if(this.tileEntitySpatialPoweredFurnace.isActive()){
-        	//int i1 = this.tileEntitySpatialPoweredFurnace.getBurnTimeRemainingScaled(13);
-        	//this.drawTexturedModalRect(56, 36, 176, 12, 14, 13);
-        	//i1 = this.tileEntitySpatialPoweredFurnace.getCookProgressScaled(24);
-        	//this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
-        //}
+        if(this.tileEntitySpatialPoweredFurnace.isActive()){
+        	int i1 = this.tileEntitySpatialPoweredFurnace.getBurnTimeRemainingScaled(13);
+        	this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
+        	i1 = this.tileEntitySpatialPoweredFurnace.getCookProgressScaled(24);
+        	this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+        }
     }
 }
