@@ -1,7 +1,9 @@
 package ohrm.SpatialMachines.container;
 
+import ohrm.SpatialMachines.recipes.SmasherRecipes;
 import ohrm.SpatialMachines.slot.SlotRemove;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
+import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredSmasher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,20 +12,19 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class ContainerSpatialPoweredFurnace extends Container
+public class ContainerSpatialPoweredSmasher extends Container
 {
-    private TileEntitySpatialPoweredFurnace tileFurnace;
+    private TileEntitySpatialPoweredSmasher tileSmasher;
     private int lastTicks;
     private int lastActive;
     private int lastEnergy;
     private static final String __OBFID = "CL_00001748";
 
-    public ContainerSpatialPoweredFurnace(InventoryPlayer invPlayer, TileEntitySpatialPoweredFurnace tile)
+    public ContainerSpatialPoweredSmasher(InventoryPlayer invPlayer, TileEntitySpatialPoweredSmasher tile)
     {
-        this.tileFurnace = tile;
+        this.tileSmasher = tile;
         this.addSlotToContainer(new Slot(tile, 0, 56, 17));
         this.addSlotToContainer(new SlotRemove(tile, 1, 116, 35));
         int i;
@@ -46,8 +47,8 @@ public class ContainerSpatialPoweredFurnace extends Container
     {
     	
         super.addCraftingToCrafters(craft);
-        craft.sendProgressBarUpdate(this, 0, this.tileFurnace.cycledTicks);
-        craft.sendProgressBarUpdate(this, 1, this.tileFurnace.active);
+        craft.sendProgressBarUpdate(this, 0, this.tileSmasher.cycledTicks);
+        craft.sendProgressBarUpdate(this, 1, this.tileSmasher.active);
         
     }
 
@@ -62,20 +63,20 @@ public class ContainerSpatialPoweredFurnace extends Container
         {
             ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-            if (this.lastTicks != this.tileFurnace.getCurrentCycledTicks())
+            if (this.lastTicks != this.tileSmasher.getCurrentCycledTicks())
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tileFurnace.cycledTicks);
+                icrafting.sendProgressBarUpdate(this, 0, this.tileSmasher.cycledTicks);
             }
 
-            if (this.lastActive != this.tileFurnace.active)
+            if (this.lastActive != this.tileSmasher.active)
             {
-                icrafting.sendProgressBarUpdate(this, 1, this.tileFurnace.active);
+                icrafting.sendProgressBarUpdate(this, 1, this.tileSmasher.active);
             }
         }
 
       
-        this.lastTicks = this.tileFurnace.cycledTicks;
-        this.lastActive = this.tileFurnace.active;
+        this.lastTicks = this.tileSmasher.cycledTicks;
+        this.lastActive = this.tileSmasher.active;
     }
 
     @SideOnly(Side.CLIENT)
@@ -83,19 +84,19 @@ public class ContainerSpatialPoweredFurnace extends Container
     {
         if (p_75137_1_ == 0)
        {
-            this.tileFurnace.cycledTicks = p_75137_2_;
+            this.tileSmasher.cycledTicks = p_75137_2_;
        }
 
        if (p_75137_1_ == 1)
        {
-    	   this.tileFurnace.active = p_75137_2_;
+    	   this.tileSmasher.active = p_75137_2_;
        }
 
     }
 
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileFurnace.isUseableByPlayer(player);
+        return this.tileSmasher.isUseableByPlayer(player);
     }
 
     /**
@@ -122,7 +123,7 @@ public class ContainerSpatialPoweredFurnace extends Container
             }
             else if (slotNum != 0)
             {
-                if (FurnaceRecipes.smelting().getSmeltingResult(itemstack1) != null)
+                if (SmasherRecipes.smelting().getSmashingResult(itemstack1) != null)
                 {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                     {

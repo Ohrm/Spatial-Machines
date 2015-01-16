@@ -12,14 +12,16 @@ public class AddedBlocks {
 	
 	//Powered Machines
     public static Block SpatialPoweredFurnace;
+    public static Block SpatialPoweredSmasher;
     
-    //Speed multipliers
     public static Block BoostBlock;
     
     public static void addBlocks() {
     	
     	//Powered Machines
     	SpatialPoweredFurnace =  new SpatialPoweredFurnace();
+    	SpatialPoweredSmasher = new SpatialPoweredSmasher();
+    	
     	BoostBlock = new BoostBlock();
     
     	registerBlocks();
@@ -33,6 +35,7 @@ public class AddedBlocks {
     	//Game Reg    
     	//Powered Machines
     	GameRegistry.registerBlock(SpatialPoweredFurnace, "spatialPoweredFurnace");
+    	GameRegistry.registerBlock(SpatialPoweredSmasher, "spatialPoweredSmasher");
     	
     	GameRegistry.registerBlock(BoostBlock, "speedBooster");
     	

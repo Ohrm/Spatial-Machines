@@ -2,9 +2,11 @@ package ohrm.SpatialMachines.gui;
 
 import ohrm.SpatialMachines.container.ContainerSpatialPoweredFurnace;
 import ohrm.SpatialMachines.container.ContainerBoostBlock;
+import ohrm.SpatialMachines.container.ContainerSpatialPoweredSmasher;
 import ohrm.SpatialMachines.main.SpatialMain;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
 import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
+import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredSmasher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -37,6 +39,15 @@ public class GUIHandler implements IGuiHandler {
 			}
 			break;
 			
+		case 2:
+			te = world.getTileEntity(x, y, z);
+			if(te != null && te instanceof TileEntitySpatialPoweredSmasher){
+				
+				return new ContainerSpatialPoweredSmasher(player.inventory, (TileEntitySpatialPoweredSmasher)te);
+				
+			}
+			break;
+			
 		}
 		return null;
 	}
@@ -59,6 +70,15 @@ public class GUIHandler implements IGuiHandler {
 			if(te != null && te instanceof TileEntityBoostBlock){
 				
 				return new GuiBoostBlock(player.inventory, (TileEntityBoostBlock)te);
+				
+			}
+			break;
+			
+		case 2:
+			te = world.getTileEntity(x, y, z);
+			if(te != null && te instanceof TileEntitySpatialPoweredSmasher){
+				
+				return new GuiSpatialPoweredSmasher(player.inventory, (TileEntitySpatialPoweredSmasher)te);
 				
 			}
 			break;

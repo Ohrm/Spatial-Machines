@@ -23,6 +23,9 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
     
     public float energyMultiplier = 1;
     
+    public int ticksSinceLastEnergyUpdate = 20;
+    public int ticksSinceLastSpeedUpdate = 20;
+    
 	Block block;
 	
 	public TileEnergySpatial() {
@@ -79,118 +82,154 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
 	 */
 	public abstract void onPoweredCycleEnd();
 	
+	/**
+	 * Use the blocks in a 5 by 5 by 5 area to calculate the speed increase and increase of energy as a result
+	 * @param xco: The x coordinate of the spatial block
+	 * @param yco: The y coordinate of the spatial block
+	 * @param zco: The z coordinate of the spatial block
+	 * @param parWorld: The world the spatial block is located in
+	 * @return The number of times the original speed should be multiplied by
+	 */
 	public float speedMultiplier(int xco, int yco, int zco, World parWorld){
     	
-    	tmpMultiplier = 1.0f;
-    	tmpEnergySpeedMultiplier = 0.0f;
+		if(ticksSinceLastSpeedUpdate == 20){
+			tmpMultiplier = 1.0f;
+    		tmpEnergySpeedMultiplier = 0.0f;
     	
-    	for(int x = -2; x <= 2; x++){
-    		for(int y = -2; y <= 2; y++){
-    			for(int z = -2; z <= 2; z++){    				
-    				block = parWorld.getBlock(xco + x, yco + y, zco + z);
+    		for(int x = -2; x <= 2; x++){
+    			for(int y = -2; y <= 2; y++){
+    				for(int z = -2; z <= 2; z++){    				
+    					block = parWorld.getBlock(xco + x, yco + y, zco + z);
     				
-    				if(block != null){
+    					if(block != null){
     					
-    					if(block == AddedBlocks.BoostBlock){
+    						if(block == AddedBlocks.BoostBlock){
     		    		
-    						TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
+    							TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
     						
-    						if(te instanceof TileEntityBoostBlock){
+    							if(te instanceof TileEntityBoostBlock){
     							
-    							ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
+    								ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
     							
-    							if(currentItem != null && currentItem.getItem() instanceof ItemSpeedBoostBase){
-    								if(currentItem.getItemDamage() == 0){
+    								if(currentItem != null && currentItem.getItem() instanceof ItemSpeedBoostBase){
+    									if(currentItem.getItemDamage() == 0){
     								
-    									tmpMultiplier += 0.1f;
-    									tmpEnergySpeedMultiplier += 0.05f;
+    										tmpMultiplier += 0.1f;
+    										tmpEnergySpeedMultiplier += 0.05f;
     								
-    								}else if(currentItem.getItemDamage() == 1){
+    									}else if(currentItem.getItemDamage() == 1){
     								
-    									tmpMultiplier += 0.3f;
-    									tmpEnergySpeedMultiplier += 0.15f;
+    										tmpMultiplier += 0.3f;
+    										tmpEnergySpeedMultiplier += 0.15f;
     								
-    								}else if(currentItem.getItemDamage() == 2){
+    									}else if(currentItem.getItemDamage() == 2){
     								
-    									tmpMultiplier += 0.5f;
-    									tmpEnergySpeedMultiplier += 0.25f;
+    										tmpMultiplier += 0.5f;
+    										tmpEnergySpeedMultiplier += 0.25f;
     								
+    									}
     								}
-    							}
     							
-    						}
+    							}
     		    	
+    						}
+    				
     					}
     				
     				}
     				
     			}
-    			
-    		}
     		
-    	}
+    		}
     	
-    	if(tmpMultiplier != multiplier)
-    		multiplier = tmpMultiplier;
+    		if(tmpMultiplier != multiplier)
+    			multiplier = tmpMultiplier;
     	
-    	return multiplier;
-    	
+    		ticksSinceLastSpeedUpdate = 0;
+    		
+    		return multiplier;
+		
+		}else{
+			
+			ticksSinceLastSpeedUpdate++;
+			
+			return multiplier;
+			
+		}
     }
 	
+	/**
+	 * Use the blocks in a 5 by 5 by 5 area to calculate the energy decrease
+	 * @param xco: The x coordinate of the spatial block
+	 * @param yco: The y coordinate of the spatial block
+	 * @param zco: The z coordinate of the spatial block
+	 * @param parWorld: The world the spatial block is located in
+	 * @return The number of times the original energy should be divided by
+	 */
 	public float energyMultiplier(int xco, int yco, int zco, World parWorld){
     	
-    	tmpEnergyMultiplier = 1.0f;
+		if(ticksSinceLastEnergyUpdate == 20){
+			
+			tmpEnergyMultiplier = 1.0f;
     	
-    	for(int x = -2; x <= 2; x++){
-    		for(int y = -2; y <= 2; y++){
-    			for(int z = -2; z <= 2; z++){    				
-    				block = parWorld.getBlock(xco + x, yco + y, zco + z);
+    		for(int x = -2; x <= 2; x++){
+    			for(int y = -2; y <= 2; y++){
+    				for(int z = -2; z <= 2; z++){    				
+    					block = parWorld.getBlock(xco + x, yco + y, zco + z);
     				
-    				if(block != null){
+    					if(block != null){
     					
-    					if(block == AddedBlocks.BoostBlock){
+    						if(block == AddedBlocks.BoostBlock){
     		    		
-    						TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
+    							TileEntity te = parWorld.getTileEntity(xco + x, yco + y, zco + z);
     						
-    						if(te instanceof TileEntityBoostBlock){
+    							if(te instanceof TileEntityBoostBlock){
     							
-    							ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
+    								ItemStack currentItem = ((TileEntityBoostBlock) te).getStackInSlot(0);
     							
-    							if(currentItem != null && currentItem.getItem() instanceof ItemEnergyBoostBase){
-    								if(currentItem.getItemDamage() == 0){
+    								if(currentItem != null && currentItem.getItem() instanceof ItemEnergyBoostBase){
+    									if(currentItem.getItemDamage() == 0){
     								
-    									tmpEnergyMultiplier += 0.1f;    									
+    										tmpEnergyMultiplier += 0.1f;    									
     								
-    								}else if(currentItem.getItemDamage() == 1){
+    									}else if(currentItem.getItemDamage() == 1){
     								
-    									tmpEnergyMultiplier += 0.3f;
+    										tmpEnergyMultiplier += 0.3f;
     								
-    								}else if(currentItem.getItemDamage() == 2){
+    									}else if(currentItem.getItemDamage() == 2){
     								
-    									tmpEnergyMultiplier += 0.5f;
+    										tmpEnergyMultiplier += 0.5f;
     								
+    									}
     								}
-    							}
     							
-    						}
+    							}
     		    	
+    						}
+    				
     					}
     				
     				}
-    				
-    			}
     			
-    		}
+    			}
     		
-    	}
+    		}
     	
-    	tmpEnergyMultiplier += tmpEnergySpeedMultiplier;
+    		tmpEnergyMultiplier += tmpEnergySpeedMultiplier;
     	
-    	if(tmpEnergyMultiplier != energyMultiplier)
-    		energyMultiplier = tmpEnergyMultiplier;
-    	
-    	return energyMultiplier;
-    	
+    		if(tmpEnergyMultiplier != energyMultiplier)
+    			energyMultiplier = tmpEnergyMultiplier;
+    		
+    		ticksSinceLastEnergyUpdate = 0;
+    		
+    		return energyMultiplier;
+		}else{
+			
+			ticksSinceLastEnergyUpdate++;
+			
+			return energyMultiplier;
+			
+		}
     }
 
 }

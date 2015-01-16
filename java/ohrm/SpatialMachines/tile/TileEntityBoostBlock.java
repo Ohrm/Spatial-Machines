@@ -42,7 +42,6 @@ public class TileEntityBoostBlock extends TileInventory{
 
 	@Override
 	public String getInventoryName() {
-		// TODO Auto-generated method stub
 		return "Speed Booster";
 	}
 

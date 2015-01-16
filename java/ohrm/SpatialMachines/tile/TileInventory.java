@@ -18,7 +18,7 @@ public abstract class TileInventory extends TileEntity implements IInventory, IS
 		_inventories = new ItemStack[getSizeInventory()];
 		
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);

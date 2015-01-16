@@ -17,6 +17,7 @@ import ohrm.SpatialMachines.proxies.ClientProxy;
 import ohrm.SpatialMachines.proxies.CommonProxy;
 import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredFurnace;
 import ohrm.SpatialMachines.tile.TileEntityBoostBlock;
+import ohrm.SpatialMachines.tile.TileEntitySpatialPoweredSmasher;
 
 @Mod(name = "Spatial Machines", modid = Reference.MODID, version = Reference.MODVERSION)
 public class SpatialMain {
@@ -44,6 +45,7 @@ public class SpatialMain {
 		serverProxy.registerRenders();
 		
 		GameRegistry.registerTileEntity(TileEntitySpatialPoweredFurnace.class, "Spatial Powered Furnace");
+		GameRegistry.registerTileEntity(TileEntitySpatialPoweredSmasher.class, "Spatial Powered Smasher");
 		GameRegistry.registerTileEntity(TileEntityBoostBlock.class, "Speed Boost");
 		
 		new GUIHandler();

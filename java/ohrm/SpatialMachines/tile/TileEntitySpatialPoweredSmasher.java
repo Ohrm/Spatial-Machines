@@ -3,20 +3,20 @@ package ohrm.SpatialMachines.tile;
 import cofh.api.energy.EnergyStorage;
 import ohrm.SpatialMachines.Util.Utils;
 import ohrm.SpatialMachines.block.SpatialPoweredFurnace;
+import ohrm.SpatialMachines.recipes.SmasherRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
+public class TileEntitySpatialPoweredSmasher extends TileEnergySpatial{
    
 	private static final int[] slotsTop = new int[] {0};
     private static final int[] slotsBottom = new int[] {0};
@@ -31,6 +31,7 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     
     private String name;
 	
+	
     /**
      * Returns the number of slots in the inventory.
      */
@@ -44,7 +45,7 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
      */
     @Override
 	public String getInventoryName() {
-		return "Spatial Powered Furnace";
+		return "Spatial Powered Smasher";
 	}
 
     /**
@@ -79,7 +80,9 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     		return false;	
     			
     		}
-    		if(FurnaceRecipes.smelting().getSmeltingResult(this._inventories[0]) != null)
+
+    		System.out.println(SmasherRecipes.smelting().getSmashingResult(this._inventories[0]));
+    		if(SmasherRecipes.smelting().getSmashingResult(this._inventories[0]) != null)
     			return true;
     		
     	}
@@ -97,21 +100,22 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     @Override
     public void onPoweredCycleEnd(){
     	
+    	ItemStack itemstack = SmasherRecipes.smelting().getSmashingResult(this._inventories[0]);
+    	
     	if(_inventories[1] != null){
     		
     		if(consumeInputs()){
     			
-    			_inventories[1].stackSize += 1;
+    			_inventories[1].stackSize += itemstack.stackSize;
     			
     		}
     		
     	}else{
     		
-    		ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this._inventories[0]);
     		if(consumeInputs()){
     		
     			_inventories[1] = itemstack.copy();
-    			_inventories[1].stackSize = 1;
+    			_inventories[1].stackSize = itemstack.stackSize;
     		
     		}
     		
@@ -139,8 +143,9 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
         return this.cycledTicks * p_145953_1_ / getCycleLength();
     }
 
+    //TODO: Give this a better name
     @SideOnly(Side.CLIENT)
-    public int getBurnTimeRemainingScaled(int time)
+    public int getIsActive(int time)
     {
     	if(this.active == 1)
     		return time;
