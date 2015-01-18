@@ -34,6 +34,15 @@ public class SmasherRecipes
     	for(ItemStack ore : OreDictionary.getOres("oreCopper")){
     		this.addBlockRecipe(Block.getBlockFromItem(ore.getItem()), new ItemStack(AddedItems.copperDust, 2), 0.7F);
     	}
+    	for(ItemStack ore : OreDictionary.getOres("oreTin")){
+    		this.addBlockRecipe(Block.getBlockFromItem(ore.getItem()), new ItemStack(AddedItems.tinDust, 2), 0.7F);
+    	}
+    	for(ItemStack ore : OreDictionary.getOres("oreLead")){
+    		this.addBlockRecipe(Block.getBlockFromItem(ore.getItem()), new ItemStack(AddedItems.leadDust, 2), 0.7F);
+    	}
+    	for(ItemStack ore : OreDictionary.getOres("oreSilver")){
+    		this.addBlockRecipe(Block.getBlockFromItem(ore.getItem()), new ItemStack(AddedItems.silverDust, 2), 0.7F);
+    	}
     }
 
     public void addBlockRecipe(Block input, ItemStack itemStack, float xp)

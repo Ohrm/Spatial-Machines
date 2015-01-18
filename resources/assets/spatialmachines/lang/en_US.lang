@@ -13,5 +13,16 @@ item.spatialmachines_itemEnergyBoost_basic.name=Basic Energy Booster
 item.spatialmachines_itemEnergyBoost_intermediate.name=Intermediate Energy Booster
 item.spatialmachines_itemEnergyBoost_advanced.name=Advanced Energy Booster
 
+item.spatialmachines_spatialDetector.name=Spatial Detector
+
 item.spatialmachines_copperDust.name=Copper Dust
 item.spatialmachines_copperIngot.name=Copper Ingot
+
+item.spatialmachines_tinDust.name=Tin Dust
+item.spatialmachines_tinIngot.name=Tin Ingot
+
+item.spatialmachines_leadDust.name=Lead Dust
+item.spatialmachines_leadIngot.name=Lead Ingot
+
+item.spatialmachines_silverDust.name=Silver Dust
+item.spatialmachines_silverIngot.name=Silver Ingot

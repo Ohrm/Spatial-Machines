@@ -44,10 +44,33 @@ public class AddedBlocks {
        
     	GameRegistry.addRecipe(new ItemStack(SpatialPoweredFurnace, 1), new Object[]{
     		
-    		"CCC",
+    		"CSC",
     		"CIC",
     		"CCC",
     		'C', Blocks.cobblestone,
+    		'S', AddedItems.spatialDetector,
+    		'I', Blocks.iron_block
+    		
+    	});
+    	
+    	GameRegistry.addRecipe(new ItemStack(SpatialPoweredSmasher, 1), new Object[]{
+    		
+    		"SDS",
+    		"SIS",
+    		"SSS",
+    		'S', Blocks.stone,
+    		'D', AddedItems.spatialDetector,
+    		'I', Blocks.iron_block
+    		
+    	});
+    	
+    	GameRegistry.addRecipe(new ItemStack(BoostBlock, 1), new Object[]{
+    		
+    		"BSB",
+    		"BIB",
+    		"BBB",
+    		'B', Blocks.iron_bars,
+    		'S', AddedItems.spatialDetector,
     		'I', Blocks.iron_block
     		
     	});
