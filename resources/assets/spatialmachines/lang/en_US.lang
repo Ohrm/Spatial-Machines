@@ -1,6 +1,7 @@
 itemGroup.spatialTab=Spatial Machines
 
 tile.spatialmachines_SpatialPoweredFurnace.name=Spatial Powered Furnace
+tile.spatialmachines_SpatialPoweredSmasher.name=Spatial Powered Smasher
 
 tile.spatialmachines_BoostBlock.name=Spatial Booster
 
@@ -11,3 +12,6 @@ item.spatialmachines_itemSpeedBoost_advanced.name=Advanced Speed Booster
 item.spatialmachines_itemEnergyBoost_basic.name=Basic Energy Booster
 item.spatialmachines_itemEnergyBoost_intermediate.name=Intermediate Energy Booster
 item.spatialmachines_itemEnergyBoost_advanced.name=Advanced Energy Booster
+
+item.spatialmachines_copperDust.name=Copper Dust
+item.spatialmachines_copperIngot.name=Copper Ingot

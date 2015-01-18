@@ -20,12 +20,11 @@ public class SmasherRecipes
     /** The list of smelting results. */
     private Map smashingList = new HashMap();
     private Map experienceList = new HashMap();
-    private static final String __OBFID = "CL_00000085";
 
     /**
      * Used to call methods addSmelting and getSmeltingResult.
      */
-    public static SmasherRecipes smelting()
+    public static SmasherRecipes smelting() 
     {
         return smashingBase;
     }

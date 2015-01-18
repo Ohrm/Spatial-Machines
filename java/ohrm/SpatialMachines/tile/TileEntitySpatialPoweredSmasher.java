@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -81,7 +82,6 @@ public class TileEntitySpatialPoweredSmasher extends TileEnergySpatial{
     			
     		}
 
-    		System.out.println(SmasherRecipes.smelting().getSmashingResult(this._inventories[0]));
     		if(SmasherRecipes.smelting().getSmashingResult(this._inventories[0]) != null)
     			return true;
     		
@@ -102,7 +102,20 @@ public class TileEntitySpatialPoweredSmasher extends TileEnergySpatial{
     	
     	ItemStack itemstack = SmasherRecipes.smelting().getSmashingResult(this._inventories[0]);
     	
-    	if(_inventories[1] != null){
+    	if(destroyInputs(this.xCoord, this.yCoord, this.zCoord, this.worldObj)){
+    		
+    		consumeInputs();
+    		
+    	}else if(Utils.isFurnaceAvailable(this.xCoord, this.yCoord, this.zCoord, this.worldObj, itemstack)){
+    		
+    		consumeInputs();
+    		
+    	}else if(Utils.isChestAvailable(this.xCoord, this.yCoord, this.zCoord, this.worldObj, itemstack)){
+    		
+    		consumeInputs();
+
+    		
+    	}else if(_inventories[1] != null){
     		
     		if(consumeInputs()){
     			
@@ -143,12 +156,11 @@ public class TileEntitySpatialPoweredSmasher extends TileEnergySpatial{
         return this.cycledTicks * p_145953_1_ / getCycleLength();
     }
 
-    //TODO: Give this a better name
     @SideOnly(Side.CLIENT)
-    public int getIsActive(int time)
+    public int getIsActive(int scale)
     {
     	if(this.active == 1)
-    		return time;
+    		return scale;
     	else
     		return 0;
     }

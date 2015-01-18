@@ -16,7 +16,6 @@ public class GuiBoostBlock extends GuiContainer
 {
     private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("spatialmachines", "textures/gui/speedBoost.png");
     private TileEntityBoostBlock tileEntitySpeedBoost;
-    private static final String __OBFID = "CL_00000758";
 
     public GuiBoostBlock(InventoryPlayer player, TileEntityBoostBlock tile)
     {

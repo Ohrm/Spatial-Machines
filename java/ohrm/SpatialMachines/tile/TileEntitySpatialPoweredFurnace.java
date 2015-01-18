@@ -3,6 +3,7 @@ package ohrm.SpatialMachines.tile;
 import cofh.api.energy.EnergyStorage;
 import ohrm.SpatialMachines.Util.Utils;
 import ohrm.SpatialMachines.block.SpatialPoweredFurnace;
+import ohrm.SpatialMachines.recipes.SmasherRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -97,21 +98,31 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     @Override
     public void onPoweredCycleEnd(){
     	
-    	if(_inventories[1] != null){
+    	ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this._inventories[0]);
+    	
+    	if(destroyInputs(this.xCoord, this.yCoord, this.zCoord, this.worldObj)){
+    		
+    		consumeInputs();
+    		
+    	}else if(Utils.isChestAvailable(this.xCoord, this.yCoord, this.zCoord, this.worldObj, itemstack)){
+    		
+    		consumeInputs();
+
+    		
+    	}else if(_inventories[1] != null){
     		
     		if(consumeInputs()){
     			
-    			_inventories[1].stackSize += 1;
+    			_inventories[1].stackSize += itemstack.stackSize;
     			
     		}
     		
     	}else{
     		
-    		ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this._inventories[0]);
     		if(consumeInputs()){
     		
     			_inventories[1] = itemstack.copy();
-    			_inventories[1].stackSize = 1;
+    			_inventories[1].stackSize = itemstack.stackSize;
     		
     		}
     		
@@ -140,10 +151,10 @@ public class TileEntitySpatialPoweredFurnace extends TileEnergySpatial{
     }
 
     @SideOnly(Side.CLIENT)
-    public int getBurnTimeRemainingScaled(int time)
+    public int getIsActive(int scale)
     {
     	if(this.active == 1)
-    		return time;
+    		return scale;
     	else
     		return 0;
     }

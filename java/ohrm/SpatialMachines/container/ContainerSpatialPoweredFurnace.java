@@ -19,7 +19,6 @@ public class ContainerSpatialPoweredFurnace extends Container
     private int lastTicks;
     private int lastActive;
     private int lastEnergy;
-    private static final String __OBFID = "CL_00001748";
 
     public ContainerSpatialPoweredFurnace(InventoryPlayer invPlayer, TileEntitySpatialPoweredFurnace tile)
     {

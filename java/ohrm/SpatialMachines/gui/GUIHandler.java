@@ -26,7 +26,9 @@ public class GUIHandler implements IGuiHandler {
 		case 0:
 			te = world.getTileEntity(x, y, z);
 			if(te != null && te instanceof TileEntitySpatialPoweredFurnace){
+				
 				return new ContainerSpatialPoweredFurnace(player.inventory, (TileEntitySpatialPoweredFurnace)te);
+			
 			}
 			break;
 		
@@ -61,7 +63,9 @@ public class GUIHandler implements IGuiHandler {
 		case 0:
 			te = world.getTileEntity(x, y, z);
 			if (te != null && te instanceof TileEntitySpatialPoweredFurnace){
+				
 				return new GuiSpatialPoweredFurnace(player.inventory, (TileEntitySpatialPoweredFurnace)te);
+			
 			}
 			break;
 		

@@ -19,7 +19,6 @@ public class GuiSpatialPoweredSmasher extends GuiContainer
 {
     private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("spatialmachines", "textures/gui/furnace.png");
     private TileEntitySpatialPoweredSmasher tileEntitySpatialPoweredSmasher;
-    private static final String __OBFID = "CL_00000758";
 
     public GuiSpatialPoweredSmasher(InventoryPlayer player, TileEntitySpatialPoweredSmasher tile)
     {

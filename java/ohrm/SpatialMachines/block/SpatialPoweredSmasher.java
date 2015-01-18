@@ -121,10 +121,10 @@ public class SpatialPoweredSmasher extends BlockContainer {
 	@SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon)
     {
-        this.blockIcon = icon.registerIcon(Reference.MODID + ":" + "smasher_side");
+        this.blockIcon = icon.registerIcon(Reference.MODID + ":" + "furnace_side");
         this.iconFront = icon.registerIcon(this.active ? Reference.MODID + ":" + "smasher_front_on" : Reference.MODID + ":" + "smasher_front_off");
-        this.iconTop = icon.registerIcon(Reference.MODID + ":" + "smasher_top");
-        this.iconBottom = icon.registerIcon(Reference.MODID + ":" + "smasher_bottom");
+        this.iconTop = icon.registerIcon(Reference.MODID + ":" + "furnace_top");
+        this.iconBottom = icon.registerIcon(Reference.MODID + ":" + "furnace_bottom");
     }
 	
 	public void updateFurnaceBlockState(boolean p_149931_0_, World p_149931_1_, int p_149931_2_, int p_149931_3_, int p_149931_4_)
@@ -264,23 +264,23 @@ public class SpatialPoweredSmasher extends BlockContainer {
 
             	if (l == 4)
             	{
-            		world.spawnParticle("smoke", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            		world.spawnParticle("flame", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
             	}
             	else if (l == 5)
             	{
-            		world.spawnParticle("smoke", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            		world.spawnParticle("flame", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
             	}
             	else if (l == 2)
             	{
-            		world.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
-            		world.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
             	}
             	else if (l == 3)
             	{
-            		world.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
-            		world.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+            		world.spawnParticle("reddust", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
             	}
         	}else{
         		

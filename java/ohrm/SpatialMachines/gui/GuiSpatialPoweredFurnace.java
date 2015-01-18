@@ -17,7 +17,6 @@ public class GuiSpatialPoweredFurnace extends GuiContainer
 {
     private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("spatialmachines", "textures/gui/furnace.png");
     private TileEntitySpatialPoweredFurnace tileEntitySpatialPoweredFurnace;
-    private static final String __OBFID = "CL_00000758";
 
     public GuiSpatialPoweredFurnace(InventoryPlayer player, TileEntitySpatialPoweredFurnace tile)
     {
@@ -45,7 +44,7 @@ public class GuiSpatialPoweredFurnace extends GuiContainer
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         
         if(this.tileEntitySpatialPoweredFurnace.isActive()){
-        	int i1 = this.tileEntitySpatialPoweredFurnace.getBurnTimeRemainingScaled(13);
+        	int i1 = this.tileEntitySpatialPoweredFurnace.getIsActive(13);
         	this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
         	i1 = this.tileEntitySpatialPoweredFurnace.getCookProgressScaled(24);
         	this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);

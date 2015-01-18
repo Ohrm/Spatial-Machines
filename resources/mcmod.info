@@ -3,7 +3,7 @@
   "modid": "spatialmachines",
   "name": "Spatial Machines",
   "description": "Adding spatially aware machines!",
-  "version": "0.1",
+  "version": "0.1.5",
   "mcversion": "1.7.10",
   "url": "",
   "authorList": ["Ohrm"],

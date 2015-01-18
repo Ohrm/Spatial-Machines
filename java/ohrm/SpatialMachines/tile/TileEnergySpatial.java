@@ -231,5 +231,28 @@ public abstract class TileEnergySpatial extends TileEnergyBasic {
 			
 		}
     }
+	
+	public boolean destroyInputs(int xco, int yco, int zco, World parWorld){
+		
+		for(int x = -2; x <= 2; x++){
+			for(int y = -2; y <= 2; y++){
+				for(int z = -2; z <= 2; z++){    				
+					block = parWorld.getBlock(xco + x, yco + y, zco + z);
+				
+					if(block != null){
+					
+						if(block == Blocks.cactus){
+							
+							return true;
+							
+						}
+					}
+				}
+			}
+		}
+			
+		return false;
+		
+	}
 
 }
