@@ -27,6 +27,8 @@ public class AddedItems {
 	public static Item silverDust;
 	public static Item silverIngot;
 	
+	public static Item ironDust;
+	
 	public static void addItems(){
 		
 		itemSpeedBoost = new ItemSpeedBoostBase("itemSpeedBoost");
@@ -46,6 +48,8 @@ public class AddedItems {
 		silverDust = new ItemBase("silverDust");
 		silverIngot = new ItemBase("silverIngot");
 		
+		ironDust = new ItemBase("ironDust");
+		
 		registerItems();
 		
 		itemRecipes();
@@ -57,6 +61,7 @@ public class AddedItems {
 		GameRegistry.registerItem(itemSpeedBoost, "itemSpeedBoost");
 		GameRegistry.registerItem(itemEnergyBoost, "itemEnergyBoost");
 		GameRegistry.registerItem(spatialDetector, "spatialDetector");
+		
 		GameRegistry.registerItem(copperDust, "copperDust");
 		GameRegistry.registerItem(copperIngot, "copperIngot");
 		GameRegistry.registerItem(tinDust, "tinDust");
@@ -65,6 +70,7 @@ public class AddedItems {
 		GameRegistry.registerItem(leadIngot, "leadIngot");
 		GameRegistry.registerItem(silverDust, "silverDust");
 		GameRegistry.registerItem(silverIngot, "silverIngot");
+		GameRegistry.registerItem(ironDust, "ironDust");
 		
 		OreDictionary.registerOre("dustCopper", copperDust);
 		OreDictionary.registerOre("ingotCopper", copperIngot);
@@ -77,6 +83,8 @@ public class AddedItems {
 		
 		OreDictionary.registerOre("dustSilver", silverDust);
 		OreDictionary.registerOre("ingotSilver", silverIngot);
+		
+		OreDictionary.registerOre("dustIron", ironDust);
 		
 	}
 	
@@ -95,7 +103,7 @@ public class AddedItems {
 			
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 1, 0), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 2, 0), new Object[]{
 			
 			"I I",
 			"IRI",
@@ -105,7 +113,7 @@ public class AddedItems {
 			
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 1, 1), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 2, 1), new Object[]{
 			
 			"D D",
 			"IRI",
@@ -116,7 +124,7 @@ public class AddedItems {
 			
 		});
 
-		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 1, 2), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemSpeedBoost, 2, 2), new Object[]{
 			
 			"D D",
 			"DRD",
@@ -127,7 +135,7 @@ public class AddedItems {
 		});
 		
 		//itemEnergyBoost
-		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 1, 0), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 2, 0), new Object[]{
 			
 			"I I",
 			"IGI",
@@ -137,7 +145,7 @@ public class AddedItems {
 			
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 1, 1), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 2, 1), new Object[]{
 			
 			"D D",
 			"IGI",
@@ -148,7 +156,7 @@ public class AddedItems {
 			
 		});
 
-		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 1, 2), new Object[]{
+		GameRegistry.addRecipe(new ItemStack(itemEnergyBoost, 2, 2), new Object[]{
 			
 			"D D",
 			"DGD",
@@ -164,6 +172,7 @@ public class AddedItems {
 	    GameRegistry.addSmelting(tinDust, new ItemStack(tinIngot), 0.2f);
 	    GameRegistry.addSmelting(leadDust, new ItemStack(leadIngot), 0.2f);
 	    GameRegistry.addSmelting(silverDust, new ItemStack(silverIngot), 0.2f);
+	    GameRegistry.addSmelting(ironDust, new ItemStack(Items.iron_ingot), 0.2f);
 	    
 	}
 	

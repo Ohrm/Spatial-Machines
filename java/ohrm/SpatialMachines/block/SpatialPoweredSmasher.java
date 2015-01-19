@@ -107,6 +107,9 @@ public class SpatialPoweredSmasher extends BlockContainer {
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
+		if (meta == 0 && side == 3) {
+			return this.iconFront;
+		}
 		if(side == 1) {
 			return this.iconTop;
 		} else if(side == 0){
